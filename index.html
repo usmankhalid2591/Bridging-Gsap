@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="css/animate.css">
+	
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	
+	<!-- Fontawesome Kit -->
+	<script src="js/fontawesome.js"></script>
+
+	<!-- Style -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<title>New</title>
+</head>
+<body>
+
+
+	<main>
+		<div class="content">
+			<h1 class="anim1">
+				<span>Bridging the gap</span>
+				<span>between dream</span>
+				<span>and reality</span>
+			</h1>
+			<p class="anim1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. similique quis incidunt cupiditate a vero!</p>
+			<a href="#" class="anim1" id="cta">Start dreaming</a>
+		</div>
+	</main>
+	<aside>
+		<img src="img/SVG.svg" alt="swirl1">
+	</aside>
+
+
+	
+	<!-- Script tags -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/gsap.min.js"></script>
+	<script src="js/CSSRulePlugin3.min.js"></script>
+	<script src="js/custom.js"></script>
+
+	<script>
+		
+		var rule = CSSRulePlugin.getRule("span:after");
+
+		/*
+		gsap.from('.anim1', {opacity: 0, duration: 1, y: -50, stagger: 0.6});
+		gsap.from('img', {duration: 1, y:30, opacity: 0, delay: 1.4});
+		gsap.to(rule, {cssRule: {scaleY:0}, duration:1});
+		gsap.from('aside', {duration: 1, delay: 1.1, backgroundPosition: '200px 0px', opacity: 0});
+		*/
+
+		var tl = gsap.timeline(
+			{defaults:{
+				duration: 1
+			}}
+		);
+
+		tl.from('.anim1', {opacity: 0, duration: 1, y: -50, stagger: 0.6})
+			.to(rule, {duration: 1.8, cssRule:{scaleY:0}}, "-=2.2")
+			.from('aside', {duration: 1, backgroundPosition: '200px 0px', opacity: 0}, "-=1.5")
+			.from("img", {y:50, opacity:0}, "-=.5");
+
+		document.getElementById('cta').addEventListener('click', () => {
+			tl.reversed() ? tl.play() : tl.reverse();
+		});  
+	
+	</script>
+
+</body>
+</html>
